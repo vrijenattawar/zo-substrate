@@ -33,4 +33,4 @@ notifications:
   method: "log"                      # "log", "sms", or "email"
 
 state:
-  dir: "N5/data/zo-substrate"        # Where to store sync state (relative to workspace)
+  dir: "data/zo-substrate"           # Where to store sync state (relative to workspace)

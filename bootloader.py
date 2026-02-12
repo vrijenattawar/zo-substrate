@@ -34,13 +34,9 @@ SKILL_DESCRIPTION = """|
 
 # Paths this skill needs
 REQUIRED_PATHS = {
-    "N5_data_zo_substrate_": {
-        "default": "N5/data/zo-substrate/",
-        "description": "Found in SKILL.md"
-    },
-    "N5_data_zo_substrate": {
-        "default": "N5/data/zo-substrate",
-        "description": "Found in scripts/config.py"
+    "state_dir": {
+        "default": "data/zo-substrate",
+        "description": "State directory for sync tracking (configurable in substrate.yaml)"
     }
 }
 
@@ -186,7 +182,7 @@ class InstallationPlanner:
         
         self.plan["steps"].append({
             "action": "create_config",
-            "templates": ["config/settings.yaml.example", "config/blocks.yaml.example"],
+            "templates": ["config/substrate.yaml.example"],
             "description": "Create configuration files from templates"
         })
         
