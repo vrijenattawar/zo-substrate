@@ -1,0 +1,35 @@
+identity:
+  name: "va"
+  handle: "<YOUR_DOMAIN>"
+
+partner:
+  name: "zoputer"
+  handle: "zoputer.zo.computer"
+
+substrate:
+  repo: "vrijenattawar/zoputer-substrate"
+  branch: "main"
+  clone_method: "https"
+
+export:
+  skills:
+    - "security-gate"
+    - "audit-system"
+    - "consulting-api"
+    - "content-classifier"
+    - "librarian-export"
+  auto_detect: false
+  exclude:
+    - "zo-substrate"
+
+pull:
+  install_dir: "Skills"
+  backup_existing: true
+  auto_pull: false
+
+notifications:
+  enabled: false
+  method: "log"
+
+state:
+  dir: "data/zo-substrate"

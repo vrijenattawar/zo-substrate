@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# Local config
+config/settings.yaml
+config/webhook.yaml
+config/blocks.yaml
+!config/*.example
+
+# Logs
+*.log
+
+# Installation records
+.installation_record.json
