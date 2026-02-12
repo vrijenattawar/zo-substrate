@@ -29,19 +29,23 @@ def scan_skills() -> list[dict]:
         if not skill_md.exists():
             continue
 
-        name = d.name
+        dir_name = d.name
+        frontmatter_name = None
         content = skill_md.read_text()
         for line in content.split("\n"):
             if line.strip().startswith("name:"):
-                name = line.split(":", 1)[1].strip().strip("'\"")
+                frontmatter_name = line.split(":", 1)[1].strip().strip("'\"")
                 break
 
-        scripts_dir = d / "scripts"
-        scripts = []
-        if scripts_dir.exists():
-            scripts = [f.name for f in scripts_dir.iterdir() if f.is_file()]
+        entry = {"name": dir_name, "path": str(d.relative_to(WORKSPACE_ROOT)), "scripts": []}
+        if frontmatter_name and frontmatter_name != dir_name:
+            entry["frontmatter_name"] = frontmatter_name
 
-        skills.append({"name": name, "path": str(d.relative_to(WORKSPACE_ROOT)), "scripts": scripts})
+        scripts_dir = d / "scripts"
+        if scripts_dir.exists():
+            entry["scripts"] = [f.name for f in scripts_dir.iterdir() if f.is_file()]
+
+        skills.append(entry)
 
     return skills
 

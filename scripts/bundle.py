@@ -197,14 +197,18 @@ def main():
 
     if args.command == "create":
         cfg = load_config()
-        result = create_bundle(
-            args.skill,
-            cfg["identity"]["name"],
-            Path(args.output),
-            args.version,
-            args.notes,
-            args.dry_run,
-        )
+        try:
+            result = create_bundle(
+                args.skill,
+                cfg["identity"]["name"],
+                Path(args.output),
+                args.version,
+                args.notes,
+                args.dry_run,
+            )
+        except (ValueError, FileNotFoundError) as e:
+            print(f"Error: {e}")
+            return 1
         if args.dry_run:
             print(f"[DRY RUN] Would bundle: {args.skill} ({result['files']} files)")
         else:

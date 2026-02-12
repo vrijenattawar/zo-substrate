@@ -151,7 +151,7 @@ def init_repo(repo: str) -> None:
         (tmp / "MANIFEST.json").write_text(json.dumps(manifest, indent=2))
 
         subprocess.run(["git", "add", "-A"], cwd=tmp, capture_output=True)
-        subprocess.run(["git", "config", "user.email", "<YOUR_EMAIL>"], cwd=tmp, capture_output=True)
+        subprocess.run(["git", "config", "user.email", "zo@zo.computer"], cwd=tmp, capture_output=True)
         subprocess.run(["git", "config", "user.name", "zo-substrate"], cwd=tmp, capture_output=True)
         subprocess.run(["git", "commit", "-m", "Initialize substrate repo"], cwd=tmp, capture_output=True)
         subprocess.run(["git", "push", "origin", "main"], cwd=tmp, capture_output=True, check=False)
@@ -170,7 +170,7 @@ def main():
     init.add_argument("--identity", required=True, help="This Zo's name (e.g., 'va')")
     init.add_argument("--partner", required=True, help="Partner Zo's name (e.g., 'zoputer')")
     init.add_argument("--repo", required=True, help="GitHub repo (e.g., 'user/substrate-repo')")
-    init.add_argument("--identity-handle", default="", help="This Zo's handle (e.g., '<YOUR_DOMAIN>')")
+    init.add_argument("--identity-handle", default="", help="This Zo's handle (e.g., 'va.zo.computer')")
     init.add_argument("--partner-handle", default="", help="Partner's handle")
     init.add_argument("--clone-method", default="https", choices=["https", "ssh"])
     init.add_argument("--skills", help="Comma-separated skill slugs to export (default: auto-detect)")

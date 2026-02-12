@@ -95,7 +95,7 @@ def repo_url(cfg: Dict) -> str:
     repo = cfg["substrate"]["repo"]
     method = cfg["substrate"].get("clone_method", "https")
     if method == "ssh":
-        return f"<YOUR_EMAIL>:{repo}.git"
+        return f"git@github.com:{repo}.git"
     token = os.environ.get("GITHUB_TOKEN", "")
     if token:
         return f"https://{token}@github.com/{repo}.git"

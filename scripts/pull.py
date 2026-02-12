@@ -106,9 +106,11 @@ def install_skill(
 
     if dest.exists() and backup:
         ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-        backup_path = dest.with_name(f"{skill_name}.backup.{ts}")
+        backup_dir = install_dir / ".backups"
+        backup_dir.mkdir(parents=True, exist_ok=True)
+        backup_path = backup_dir / f"{skill_name}.{ts}"
         shutil.move(str(dest), str(backup_path))
-        print(f"    Backed up: {backup_path.name}")
+        print(f"    Backed up: .backups/{skill_name}.{ts}")
 
     elif dest.exists():
         shutil.rmtree(dest)
@@ -151,6 +153,10 @@ def pull(
         available = [d.name for d in skills_dir.iterdir() if d.is_dir()]
         if filter_skills:
             to_install = [s for s in available if s in filter_skills]
+            if not to_install:
+                print(f"  ⚠ No matching skills found for filter: {', '.join(filter_skills)}")
+                print(f"  Available in repo: {', '.join(available) if available else 'none'}")
+                return {"success": False, "installed": [], "error": "no_match"}
         else:
             to_install = available
 

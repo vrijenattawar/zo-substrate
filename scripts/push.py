@@ -131,6 +131,11 @@ def push(
     skills = discover_skills(cfg)
     if filter_skills:
         skills = [s for s in skills if s["name"] in filter_skills]
+        if not skills:
+            available = [s["name"] for s in discover_skills(cfg)]
+            print(f"  ⚠ No matching skills found for filter: {', '.join(filter_skills)}")
+            print(f"  Available: {', '.join(available) if available else 'none'}")
+            return {"success": False, "copied": [], "error": "no_match"}
 
     if not skills:
         print("  No skills to export")
