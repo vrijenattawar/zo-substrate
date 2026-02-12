@@ -15,6 +15,7 @@ venv/
 
 # Local config
 config/settings.yaml
+config/substrate.yaml
 config/webhook.yaml
 config/blocks.yaml
 !config/*.example
